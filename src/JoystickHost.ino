@@ -4,6 +4,8 @@
 
 // Joystick host code start
 #include "USBHost_t36.h"
+
+#include <bitset>
 USBHost myusb;
 USBHub hub1(myusb);
 USBHIDParser hid1(myusb);
@@ -78,43 +80,60 @@ void loop()
   int16_t  lfty = joysticks[0].getAxis(1);
   int16_t  rhtx = joysticks[0].getAxis(2);
   int16_t  rhty = joysticks[0].getAxis(5);
+  std::bitset<16> a = lftx;
+  std::bitset<16> b = lfty;
+  std::bitset<16> c = rhtx;
+  
+  
+  int8_t siglftx = lftx >> 8;
+  int8_t lwrlftx = lftx & 0xFF;
+  int8_t siglfty = lfty >> 8;
+  int8_t lwrlfty = lfty & 0xFF;
+  int8_t sigrhtx = rhtx >> 8;
+  int8_t lwrrhtx = rhtx & 0xFF;
   Serial.printf("Left stick left right:  %d\n", lftx);
-  Serial.println((lftx & 0xF) >> 0);
-  Serial.println((lftx & 0xF0) >> 4);
-  Serial.println((lftx & 0xF00) >> 8);
-  Serial.println((lftx & 0xF000) >> 12);
-   
-  // Hats 1-4 represent left stick X
-  // First 4, then next 4, etc
-  
-  
-  Joystick.hat(1, (lftx & 0xF000) >> 12);
-  Joystick.hat(2, (lftx & 0xF00) >> 8);
-  Joystick.hat(3, (lftx & 0xF0) >> 4);
-  Joystick.hat(4, (lftx & 0xF) >> 0);
-  
-  
-  // 5-8 left stick Y
-  Joystick.hat(5, (lfty & 0xF000) >> 12);
-  Joystick.hat(6, (lfty & 0xF00) >> 8);
-  Joystick.hat(7, (lfty & 0xF0) >> 4);
-  Joystick.hat(8, (lfty & 0xF) >> 0);
-  // 9-12 right stick X
-  // right stick Y ignored becuase we don't use it and driver's station only allows 12 hats
-  Joystick.hat(9, (rhtx & 0xF000) >> 12);
-  Joystick.hat(10, (rhtx & 0xF00) >> 8);
-  Joystick.hat(11, (rhtx & 0xF0) >> 4);
-  Joystick.hat(12, (rhtx & 0xF) >> 0);
+  printBitset(a);
+  Serial.printf("Left stick up down:  %d\n", lfty);
+  printBitset(b);
+  Serial.printf("Right stick left right:  %d\n", rhtx);
+  printBitset(c);
+  /*
+  Serial.println((rhtx & 0xF) >> 0);
+  Serial.println((rhtx & 0xF0) >> 4);
+  Serial.println((rhtx & 0xF00) >> 8);
+  Serial.println((rhtx & 0xF000) >> 12);
+  */
 
-  Joystick.X(600);
-  Joystick.Y(1023);
-  Joystick.Z(194); 
+  
+  Serial.println(siglftx);
+  Serial.println(lwrlftx);
+  Serial.println(siglfty);
+  Serial.println(lwrlfty);
+  Serial.println(sigrhtx);
+  Serial.println(lwrrhtx);
+  
+  Joystick.X(siglftx);
+  Joystick.Xr(lwrlftx);
+  Joystick.Y(siglfty);
+  Joystick.Yr(lwrlfty);
+  Joystick.Z(sigrhtx);
+  Joystick.Zr(lwrrhtx); 
   
   // DO NOT FORGET THIS
   Joystick.send_now();
   joysticks[0].joystickDataClear();
+  delay(20);
 }
-  
+
+template <size_t bitsetsize>
+void printBitset(const std::bitset<bitsetsize> &a) {
+    for (auto i = 0; i < 16; i++) {
+    int temp = a[i];
+    Serial.print(temp);
+   }
+   Serial.println();
+   
+  }
 void printAxis()
 {
   if (joysticks[0].available()) {
