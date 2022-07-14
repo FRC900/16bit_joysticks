@@ -278,22 +278,22 @@ let me know?  http://forum.pjrc.com/forums/4-Suggestions-amp-Bug-Reports
   #define ENDPOINT6_CONFIG	ENDPOINT_RECEIVE_UNUSED + ENDPOINT_TRANSMIT_INTERRUPT
 
 #elif defined(USB_SERIAL_HID)
-  #define VENDOR_ID		0x16C0
-  #define PRODUCT_ID		0x0487
-  #define DEVICE_CLASS		0xEF
-  #define DEVICE_SUBCLASS	0x02
-  #define DEVICE_PROTOCOL	0x01
-  #define MANUFACTURER_NAME	{'T','e','e','n','s','y','d','u','i','n','o'}
-  #define MANUFACTURER_NAME_LEN	11
-  #define PRODUCT_NAME		{'S','e','r','i','a','l','/','K','e','y','b','o','a','r','d','/','M','o','u','s','e','/','J','o','y','s','t','i','c','k'}
-  #define PRODUCT_NAME_LEN	30
-  #define EP0_SIZE		64
-  #define NUM_ENDPOINTS		7
-  #define NUM_INTERFACE		6
-  #define CDC_IAD_DESCRIPTOR	1
-  #define CDC_STATUS_INTERFACE	0
-  #define CDC_DATA_INTERFACE	1	// Serial
-  #define CDC_ACM_ENDPOINT	2
+  #define VENDOR_ID   0x16C0
+  #define PRODUCT_ID    0x5498
+  #define DEVICE_CLASS    0xEF
+  #define DEVICE_SUBCLASS 0x02
+  #define DEVICE_PROTOCOL 0x01
+  #define MANUFACTURER_NAME {'T','e','e','n','s','y','d','u','i','n','o'}
+  #define MANUFACTURER_NAME_LEN 11
+  #define PRODUCT_NAME    {'N','o','r','m','l','A','/','K','e','y','b','o','a','r','d','/','M','o','u','s','e','/','J','o','y','s','t','i','c','k'}
+  #define PRODUCT_NAME_LEN  30
+  #define EP0_SIZE    64
+  #define NUM_ENDPOINTS   7
+  #define NUM_INTERFACE   6
+  #define CDC_IAD_DESCRIPTOR  1
+  #define CDC_STATUS_INTERFACE  0
+  #define CDC_DATA_INTERFACE  1 // Serial
+  #define CDC_ACM_ENDPOINT  2
   #define CDC_RX_ENDPOINT       3
   #define CDC_TX_ENDPOINT       3
   #define CDC_ACM_SIZE          16
@@ -301,28 +301,28 @@ let me know?  http://forum.pjrc.com/forums/4-Suggestions-amp-Bug-Reports
   #define CDC_TX_SIZE_480       512
   #define CDC_RX_SIZE_12        64
   #define CDC_TX_SIZE_12        64
-  #define KEYBOARD_INTERFACE    2	// Keyboard
+  #define KEYBOARD_INTERFACE    2 // Keyboard
   #define KEYBOARD_ENDPOINT     4
   #define KEYBOARD_SIZE         8
   #define KEYBOARD_INTERVAL     1
-  #define KEYMEDIA_INTERFACE    5	// Keyboard Media Keys
+  #define KEYMEDIA_INTERFACE    5 // Keyboard Media Keys
   #define KEYMEDIA_ENDPOINT     5
   #define KEYMEDIA_SIZE         8
   #define KEYMEDIA_INTERVAL     4
-  #define MOUSE_INTERFACE       3	// Mouse
+  #define MOUSE_INTERFACE       3 // Mouse
   #define MOUSE_ENDPOINT        6
   #define MOUSE_SIZE            8
   #define MOUSE_INTERVAL        2
-  #define JOYSTICK_INTERFACE    4	// Joystick
+  #define JOYSTICK_INTERFACE    4 // Joystick
   #define JOYSTICK_ENDPOINT     7
-  #define JOYSTICK_SIZE         64	//  12 = normal, 64 = extreme joystick
+  #define JOYSTICK_SIZE         12  //  12 = normal, 64 = extreme joystick
   #define JOYSTICK_INTERVAL     1
-  #define ENDPOINT2_CONFIG	ENDPOINT_RECEIVE_UNUSED + ENDPOINT_TRANSMIT_INTERRUPT
-  #define ENDPOINT3_CONFIG	ENDPOINT_RECEIVE_BULK + ENDPOINT_TRANSMIT_BULK
+  #define ENDPOINT2_CONFIG  ENDPOINT_RECEIVE_UNUSED + ENDPOINT_TRANSMIT_INTERRUPT
+  #define ENDPOINT3_CONFIG  ENDPOINT_RECEIVE_BULK + ENDPOINT_TRANSMIT_BULK
   #define ENDPOINT4_CONFIG      ENDPOINT_RECEIVE_UNUSED + ENDPOINT_TRANSMIT_INTERRUPT
-  #define ENDPOINT5_CONFIG	ENDPOINT_RECEIVE_UNUSED + ENDPOINT_TRANSMIT_INTERRUPT
+  #define ENDPOINT5_CONFIG  ENDPOINT_RECEIVE_UNUSED + ENDPOINT_TRANSMIT_INTERRUPT
   #define ENDPOINT6_CONFIG      ENDPOINT_RECEIVE_UNUSED + ENDPOINT_TRANSMIT_INTERRUPT
-  #define ENDPOINT7_CONFIG	ENDPOINT_RECEIVE_UNUSED + ENDPOINT_TRANSMIT_INTERRUPT
+  #define ENDPOINT7_CONFIG  ENDPOINT_RECEIVE_UNUSED + ENDPOINT_TRANSMIT_INTERRUPT
 
 #elif defined(USB_TOUCHSCREEN)
   #define VENDOR_ID		0x16C0
