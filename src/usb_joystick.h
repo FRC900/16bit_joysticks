@@ -98,23 +98,22 @@ class usb_joystick_class
 
 	}
 
-	void Xrr(unsigned int val) {
-		if (val > 1023) val = 1023;
-		usb_joystick_data[2] = (usb_joystick_data[2] & 0x00000FFF)
-			| (val << 12) | (val << 22);
+	void X16(unsigned int val) {
+		if (val > 0xFFFF) val = 0xFFFF;
+		usb_joystick_data[2] = (usb_joystick_data[2] & 0x0000FFFF) | (val << 16);
 		if (!manual_mode) usb_joystick_send();
 	}
-	void Yrr(unsigned int val) {
-		if (val > 1023) val = 1023;
-		usb_joystick_data[2] = (usb_joystick_data[2] & 0x00000FFF)
-			| (val << 12) | (val << 22);
+	void Y16(unsigned int val) {
+		if (val > 0xFFFF) val = 0xFFFF;
+		usb_joystick_data[3] = (usb_joystick_data[3] & 0xFFFF0000) | (val);
 		if (!manual_mode) usb_joystick_send();
-	}
-	void Zrr(unsigned int val) {
-		if (val > 1023) val = 1023;
-		usb_joystick_data[2] = (usb_joystick_data[2] & 0x00000FFF)
-			| (val << 12) | (val << 22);
+	}	
+	void Z16(unsigned int val) {
+		if (val > 0xFFFF) val = 0xFFFF;
+		usb_joystick_data[3] = (usb_joystick_data[3] & 0x0000FFFF) | (val << 16);
 		if (!manual_mode) usb_joystick_send();
+		uint32_t *p = usb_joystick_data;
+		Serial.printf("Array %x %x %x %x", p[0], p[1], p[2], p[3]);
 	}
         inline void hat(int num, int dir) {
                 uint32_t val = dir;
@@ -311,4 +310,3 @@ extern usb_joystick_class Joystick;
 #endif // JOYSTICK_INTERFACE
 
 #endif // USBjoystick_h_
-
